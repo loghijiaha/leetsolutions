@@ -15,22 +15,22 @@ class Solution {
 
         // dijikstra
 
-        Queue<double[]> q = new PriorityQueue<>((a,b) -> Double.compare(b[1],a[1]));
-        q.offer(new double[]{start, 1.0});
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(start);
         double[] dis = new double[n];
-        dis[start] = 1;
+        dis[start] = 1.0;
         
 
         while(!q.isEmpty()){
-            double[] idx = q.poll();
+            int idx = q.poll();
             
-            for(double[] pair : gp[(int)idx[0]]){
+            for(double[] pair : gp[(int)idx]){
                 int dest = (int)pair[0];
 
-                if(dis[(int)idx[0]] * pair[1] > dis[dest]){
+                if(dis[(int)idx] * pair[1] > dis[dest]){
 
-                    dis[dest] = dis[(int)idx[0]] * pair[1];
-                    q.offer(new double[]{dest, dis[dest]});
+                    dis[dest] = dis[(int)idx] * pair[1];
+                    q.offer(dest);
 
                 }
             }
